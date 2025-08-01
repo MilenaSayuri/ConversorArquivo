@@ -1,24 +1,29 @@
 import tkinter as tk
 from tkinter import filedialog
+from tqdm import tqdm
+import time
+from docx2pdf import convert
+import os
 
 root = tk.Tk()
 root.withdraw()
 
-caminho_arquivo = filedialog.askopenfilename(title="Escolha um arquivo .docx")
-print("Arquivo selecionado:", caminho_arquivo)
+arquivos = filedialog.askopenfilenames(filetypes=[("Documentos Word", "*.docx")])
+pasta_destino = filedialog.askdirectory(title="Selecione a pasta para salvar os PDFs")
 
-if caminho_arquivo.endswith(".docx"):
-    print("Arquivo válido")
-else:
-    ("Por favor, selecione um arquivo válido(.docx)")
-    
-caminho_salvar = filedialog.asksaveasfilename(
-    defaultextension=".pdf",
-    filetypes=[("PDF files", "*.pdf")],
-    title="Salvar como..."
-)
+print("Arquivos selecionados:", arquivos)
+print("*** Salvar em: ", pasta_destino + " ***")
+print(f"Convertendo '{len(arquivos)}' arquivos em PDF...")
 
-print("Salvar em: ", caminho_salvar)
+for arquivo in tqdm(arquivos):
+    if arquivo.endswith(".docx"):
+        nome_arquivo = os.path.basename(arquivo)
+        nome_pdf = os.path.splitext(nome_arquivo)[0] + ".pdf"
+        caminho_pdf = os.path.join(pasta_destino, nome_pdf)
+        convert(arquivo, caminho_pdf)
+    else:
+        print(f"Arquivo inválido: {arquivo}")
 
-print(f"Convertendo '{caminho_arquivo}' em PDF...")
-print(f"PDF será salvo em: {caminho_salvar}")
+print(f"*** PDF será salvo em: {pasta_destino} ***")
+
+root.destroy()
