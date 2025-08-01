@@ -1,5 +1,5 @@
 📝 Conversor de Word para PDF (.docx → .pdf)
-Este é um projeto simples em Python que permite ao usuário converter arquivos .docx para PDF de forma prática, com uma interface gráfica básica para seleção de arquivos e pasta de destino. O terminal ainda oferece feedback visual com barra de progresso e cores para melhorar a experiência durante o uso.
+Este é um projeto simples em Python que permite ao usuário converter arquivos .docx para PDF de forma prática, com uma interface básica para seleção de arquivos e pasta de destino. O terminal ainda oferece visual com barra de progresso e cores para melhorar a experiência durante o uso.
 
 ✅ Funcionalidades
 Seleciona múltiplos arquivos .docx com janela de arquivos.
